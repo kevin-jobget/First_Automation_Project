@@ -1,14 +1,31 @@
 import { test, expect } from '@playwright/test';
+import { loginPage, loginPage } from '../page-objects/login-page';
 test.beforeEach(async ({ page }) => {
   // Go to the starting url before each test.
   await page.goto("https://www.preprod.jobget.com/hire/");
 });
-test('Login', async ({ page }) => {
+test('Positive Login', async ({ page }) => {
  
 
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle("JobGet (Recruiter)");
   //Login Test
+  const loginPage = new loginPage{"page"}
+  loginPage.loginBtn.click();
+  await page.getByPlaceholder('youremail@company.com').click();
+  await page.getByPlaceholder('youremail@company.com').fill('shivang@yopmail.com')
+  await page.getByPlaceholder('Password').fill('qwerty');
+  await page.getByRole('button', { name: "Log in"}).click();
+  await expect(page.getByRole('button', { name: "Post a Job"})).toBeVisible();
+});
+
+test('Negative Login', async ({ page }) => {
+ 
+
+  // Expect a title "to contain" a substring.
+  await expect(page).toHaveTitle("JobGet (Recruiter)");
+  //Login Test
+  const loginPage = new loginPage{"page"}
   await page.getByPlaceholder('youremail@company.com').click();
   await page.getByPlaceholder('youremail@company.com').fill('shivang@yopmail.com')
   await page.getByPlaceholder('Password').fill('qwerty');

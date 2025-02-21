@@ -1,26 +1,26 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
-export class PlaywrightDevPage {
+export class loginPage {
   readonly page: Page;
-  readonly loginbtn: Locator;
-  
+  readonly loginBtn: Locator;
+  readonly emailInput: Locator;
+  readonly passwordInput: Locator;
   
   constructor(page: Page) {
     this.page = page;
-    this.loginbtn = page.getByRole("button", { name: "Login"})
+    this.loginBtn = page.getByRole("button", {name: "Login"})
+    this.emailInput = page.getByRole("textbox", {name: "email address"})
+    this.passwordInput = page.getByRole("textbox", {name: "password"})
   }
 
   async goto() {
     await this.page.goto('https://playwright.dev');
   }
 
-  async getStarted() {
-    await this.getStartedLink.first().click();
-    await expect(this.gettingStartedHeader).toBeVisible();
-  }
-
-  async pageObjectModel() {
-    await this.getStarted();
-    await this.pomLink.click();
+async enterEmail(email: string){
+await this.emailInput.fill(email)
+}
+async entepassword(password: string){
+  await this.passwordInput.fill(password)
   }
 }
