@@ -1,11 +1,12 @@
 import { expect } from '@playwright/test';
 import test from "../page-objects/fixture"
 // import { loginPage } from '../page-objects/login-page';
+import { signUpAsAnEmployer } from '../services/user-service';
 test.beforeEach(async ({ page }) => {
   // Go to the starting url before each test.
   await page.goto("https://www.preprod.jobget.com/hire/");
 });
-test('Positive Login', async ({ page, loginPage }) => {
+test('Positive Login', async ({ page, loginPage, headerBarComponenet }) => {
  
 
   // Expect a title "to contain" a substring.
